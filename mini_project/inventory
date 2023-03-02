@@ -1,2 +1,2 @@
 [project-server]
-server ansible_host=172.16.131.157 ansible_connection=ssh ansible_user=ansible_usr ansible_sudo_pass=ansuser
+mini_project_server ansible_host=172.16.131.157 ansible_connection=ssh ansible_user=ansible_usr ansible_sudo_pass=ansuser
