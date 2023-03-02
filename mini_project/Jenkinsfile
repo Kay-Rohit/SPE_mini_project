@@ -1,0 +1,65 @@
+pipeline{
+
+    environment{
+	    registry="kayrohit/scientific_calculator"
+	    registryCredential="Rohit_99@feb"
+	    dockerImage=""
+	}
+
+	agent any
+
+    stages{
+        stage('Git clone'){
+            steps{
+                git branch: 'master', url: 'https://github.com/Kay-Rohit/SPE_mini_project.git'
+            }
+        }
+    	stage('Maven Build'){
+        	steps{
+            	echo 'This is job building stage'
+            	//maven clean and install command to build the target folder
+            	sh "cd mini_project; mvn clean install"
+            }
+        }
+        // stage('Run code'){
+        //   	steps{
+        //     	echo 'This is where we run the code'
+        //     	sh "cd mini_project; cd target; java -jar mini_project-1.0-SNAPSHOT.jar"
+        //         }
+        //     }
+        // }
+        stage("Building our Image"){
+            steps{
+                script{
+                    // dockerImage = docker.build registry + ":latest"
+                    dockerImage = docker.build("kayrohit/scientific_calc:latest", "./mini_project")
+                }
+            }
+        }
+        stage("Push our Image to DockerHub"){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub_pwd', variable: 'dockerhub_pwd')]) {
+                        // some block
+                        sh "docker login -u kayrohit -p ${dockerhub_pwd}"
+                        // sh "docker tag d537ae05f8eb kayrohit/scientific_calc:latest"
+                        sh "docker push kayrohit/scientific_calc:latest"
+                    }
+                }
+            }
+        }
+
+        stage("Delete docker image from local system"){
+            steps{
+                sh "docker rmi kayrohit/scientific_calc"
+            }
+        }
+
+        stage("Ansible Deploy"){
+            steps{
+                sh "cd mini_project; ansible-playbook -i inventory plybk.yml"
+                // ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'plybk.yml'
+            }
+        }
+    }
+}
