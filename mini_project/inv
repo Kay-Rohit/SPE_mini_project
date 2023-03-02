@@ -1,2 +1,0 @@
-[servers]
-172.16.131.157 ansible_user=mini_project_admin
