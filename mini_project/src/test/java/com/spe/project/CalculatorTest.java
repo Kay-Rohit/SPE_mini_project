@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Unit test for simple App.
@@ -32,6 +33,10 @@ public class CalculatorTest
         assertEquals("Finding square root of a number", 2, objCalcUnderTest.square_root(4), DELTA);
         assertEquals("Finding square root of a number", 6, objCalcUnderTest.square_root(36), DELTA);
         assertEquals("Finding square root of a number", 8, objCalcUnderTest.square_root(64), DELTA);
+    }
+
+    public void SquareTrueNegative(){
+        assertNotEquals("Checking square root false positive", 5, objCalcUnderTest.square_root(36), DELTA);
     }
 
     @Test
