@@ -15,7 +15,23 @@ public class Calculator {
 	}
 
 	static double natural_log(int n){
-		return Math.log(n);
+		double result=0;
+		try {
+			if (n < 0 ) {
+				result = Double.NaN;
+				throw new ArithmeticException("Case of NaN 0.0/0.0");
+			}
+			if (n == 0){
+				result = Double.NEGATIVE_INFINITY;
+			}
+			else {
+				result = Math.log(n);
+			}
+		} catch (ArithmeticException error) {
+			System.out.println("[EXCEPTION - LOG] - Cannot find log of negative numbers " + error.getLocalizedMessage());
+		}
+		System.out.println("[RESULT - NATURAL LOG] - " + result);
+		return result;
 	}
 
 	static double x_power_b(int x, int b){
