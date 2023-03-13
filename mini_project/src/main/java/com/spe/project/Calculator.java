@@ -1,7 +1,12 @@
 package com.spe.project;
 
 import java.util.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 public class Calculator {
+
+//	private static final Logger logger = LogManager.getLogger(Calculator.class);
+
     //my factorial function
     static long factorial(int n){
         if (n == 0)

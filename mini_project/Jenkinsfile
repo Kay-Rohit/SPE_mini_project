@@ -57,7 +57,7 @@ pipeline{
 
         stage("Ansible Deploy"){
             steps{
-                sh "cd mini_project; ansible-playbook -i inventory plybk.yml"
+                sh "cd mini_project; ansible-playbook -i inv plybk.yml"
                 // ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'plybk.yml'
             }
         }
