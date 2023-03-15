@@ -21,13 +21,6 @@ pipeline{
             	sh "cd mini_project; mvn clean install"
             }
         }
-        // stage('Run code'){
-        //   	steps{
-        //     	echo 'This is where we run the code'
-        //     	sh "cd mini_project; cd target; java -jar mini_project-1.0-SNAPSHOT.jar"
-        //         }
-        //     }
-        // }
         stage("Building our Image"){
             steps{
                 script{
