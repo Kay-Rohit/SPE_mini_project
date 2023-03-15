@@ -17,7 +17,6 @@ pipeline{
     	stage('Maven Build'){
         	steps{
             	echo 'This is job building stage'
-            	//maven clean and install command to build the target folder
             	sh "cd mini_project; mvn clean install"
             }
         }
