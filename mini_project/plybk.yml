@@ -12,4 +12,4 @@
       shell: docker pull kayrohit/scientific_calc
 
     - name: running container
-      shell: docker run -it --name calc -d kayrohit/scientific_calc
+      shell: docker create -it --name calculator kayrohit/scientific_calc /bin/bash
