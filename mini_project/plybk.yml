@@ -14,7 +14,7 @@
     - name: remove existing previous version of the container
       shell: docker stop cal && docker rm cal
 
-    - name: remove previous image
+    - name: remove previous image with none tag
       shell: docker rmi $(docker images | grep "none" | awk '{print $3}')
 
     - name: running container
