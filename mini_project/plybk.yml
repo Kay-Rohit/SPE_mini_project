@@ -11,8 +11,11 @@
     - name: pull docker image
       shell: docker pull kayrohit/scientific_calc
 
-    - name: remove existing previous version of the container and previous image
-      shell: docker stop cal && docker rm cal && docker rmi kayrohit/scientific_calc
+    - name: remove existing previous version of the container
+      shell: docker stop cal && docker rm cal
+
+    - name: remove previous image
+      shell: docker rmi $(docker images | grep "none" | awk '{print $3}')
 
     - name: running container
 #      shell: docker create -it --name calculator kayrohit/scientific_calc /bin/bash
